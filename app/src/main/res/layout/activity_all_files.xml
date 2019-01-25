@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_background_lightGray"
+    android:orientation="vertical">
+
+    <!--正常模式: 模式1：顶部状态栏-->
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/tool_bar"
+        />
+
+    <!--选择模式: 模式2：顶部状态栏-->
+    <LinearLayout
+        android:id="@+id/toolbarSelectMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_graytoolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <ImageButton
+                android:id="@+id/button_close"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:background="@drawable/bg_imgbtn_style"
+                android:padding="0dp" />
+        </LinearLayout>
+
+      <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/toolbar_title_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:singleLine="true"
+                android:text="已选择0项"
+                android:textColor="@color/home_toolbar_title"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:padding="10dp">
+            <CheckBox
+                android:id="@+id/ckbSelectAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="false"
+                android:button="@drawable/bg_checkbox_style"
+                android:textColor="@color/home_toolbar_title"
+                android:textSize="12sp"
+                android:background="@android:color/transparent" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <!--路径选择操作模式: 模式3：顶部状态栏-->
+    <LinearLayout
+        android:id="@+id/toolbarChoosePathMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_graytoolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+            <ImageButton
+                android:id="@+id/button_pasteclose"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:background="@drawable/bg_backbtn_style"
+                android:padding="0dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/toolbar_title_choosePath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:singleLine="true"
+                android:text="复制到..."
+                android:textColor="@color/home_toolbar_title"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--********************************************************************************-->
+
+
+    <!--列表顶上有导航用的面包屑-->
+    <com.sdt.safefilemanager.activity.CrumbView
+        android:id="@+id/crumb_view"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/toolbarChoosePathMode"
+        android:orientation="vertical"/>
+
+    <!--文件列表-->
+    <ListView
+        android:id="@+id/audio_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/crumb_view"
+        android:layout_above="@id/toolbarChoosePathModeBottom"
+        android:listSelector="@drawable/bg_listview_style"
+        android:clickable="false"
+        android:divider="#D9D9D9"
+        android:dividerHeight="1px"
+        android:focusable="false" />
+
+    <!--没有文件的列表-->
+    <LinearLayout
+        android:id="@+id/noMediaLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:alpha="0.1"
+            android:background="@mipmap/ic_external_storage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.4"
+            android:padding="5dp"
+            android:text="No Files found"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+
+    <!--********************************************************************************-->
+    <!--普通模式:模式1：没有底部状态栏-->
+
+
+    <!--选择模式:模式2：底部状态栏-->
+    <LinearLayout
+        android:id="@+id/toolbarSelectModeBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_layout"
+        android:minHeight="?attr/actionBarSize"
+        android:visibility="gone"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <LinearLayout
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+
+            <!--选择模式：模式2：底部状态栏：发送按钮-->
+            <ImageButton
+                android:id="@+id/button_send"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:background="@drawable/bg_imgbtn_style"
+                android:padding="0dp" />
+
+            <!--选择模式：模式2：底部状态栏：删除按钮-->
+            <ImageButton
+                android:id="@+id/button_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:background="@drawable/bg_imgbtn_style"
+                android:padding="0dp" />
+
+            <!--选择模式：模式1：底部状态栏：剪切按钮-->
+            <ImageButton
+                android:id="@+id/button_cut"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:background="@drawable/bg_imgbtn_style"
+                android:padding="0dp" />
+
+            <!--选择模式：模式2：底部状态栏：更多按钮-->
+            <ImageButton
+                android:id="@+id/button_more"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:background="@drawable/bg_imgbtn_style"
+                android:padding="0dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <!--选择路径模式:模式3：底部状态栏-->
+    <LinearLayout
+        android:id="@+id/toolbarChoosePathModeBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_layout"
+        android:minHeight="?attr/actionBarSize"
+        android:visibility="gone"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <LinearLayout
+            android:id="@+id/bottomLayout_choosePathMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <!--选择路径模式：模式3：底部状态栏：黏贴按钮-->
+            <ImageButton
+                android:id="@+id/button_paste_chooseMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_pastebtn_style"
+                android:padding="0dp" />
+
+            <!--选择路径模式：模式3：底部状态栏：取消按钮-->
+            <ImageButton
+                android:id="@+id/button_cancel_chooseMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/bg_pastecancelbtn_style"
+                android:padding="0dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

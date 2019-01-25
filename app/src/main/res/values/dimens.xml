@@ -1,0 +1,13 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="btn_positive_padding_top_bottom">2dp</dimen>
+    <dimen name="nav_drawer_width">260dp</dimen>
+
+    <dimen name="image_thumbnail_size">200dp</dimen>
+
+    <dimen name="crumb_view_padding">12dp</dimen>
+
+</resources>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_background_darkGray"
+    tools:context=".activity.HomeUnencryptFragment">
+
+    <!--普通Fragment整体滑动-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--普通Fragment 占位-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/home_background_lightGray">
+            </RelativeLayout>
+
+            <!--普通Fragment GridView-->
+            <com.sdt.safefilemanager.helper.ExpandableHeightGridView
+                android:id="@+id/gridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/home_background_lightGray"
+                android:horizontalSpacing="0dp"
+                android:numColumns="3"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="0dp" >
+            </com.sdt.safefilemanager.helper.ExpandableHeightGridView>
+
+            <!--普通Fragment 所有文件按钮-->
+            <LinearLayout
+                android:id="@+id/spaceLayout"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/home_background_darkGray"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <!--普通Fragment 所有文件按钮-->
+            <LinearLayout
+                android:id="@+id/allFilesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/home_background_lightGray"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:id="@+id/textViewAllFile"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9"
+                    android:background="@color/home_background_lightGray"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:text="所有文件"
+                    android:textColor="@color/home_grid_normal"/>
+
+                <ImageView
+                    android:id="@+id/imageViewAllFile"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:src="@mipmap/rightarrow" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

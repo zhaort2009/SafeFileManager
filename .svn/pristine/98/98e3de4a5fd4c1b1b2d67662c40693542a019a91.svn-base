@@ -1,0 +1,299 @@
+package com.sdt.safefilemanager.activity;
+
+import android.app.Dialog;
+import android.content.ActivityNotFoundException;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.opengl.Visibility;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Display;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import com.sdt.safefilemanager.R;
+import com.sdt.safefilemanager.adapter.ImagesListAdapter;
+import com.sdt.safefilemanager.helper.ImageResizer;
+import com.sdt.safefilemanager.helper.IntentBuilder;
+import com.sdt.safefilemanager.helper.Utils;
+import com.sdt.safefilemanager.model.MediaFileListModel;
+
+/**
+ * 毕业僧
+ * www.biyeseng.cn
+ */
+public class ImagesListActivity extends AppCompatActivity {
+    private ArrayList<MediaFileListModel> imageListModelsArray;
+    private LinearLayout noMediaLayout;
+    private ImageResizer mImageResizer;
+    private int mImageThumbSize;
+    private ImagesListAdapter audioListAdapter;
+    private String TAG = "ImagesListActivity";
+    private boolean isMultiSeleteMode = false;
+    private LinearLayout toolbarSelectModeTop;
+    private LinearLayout toolbarSelectModeBottom;
+
+    private ImageButton mDeleteButton;
+    private ImageButton mSendButton;
+    private ImageButton mCutButton;
+    private ImageButton mMoreButton;
+    private CheckBox checkBoxSelectAll;
+    private boolean mFromItem = false;
+    /**
+     * Called when the activity is first created.
+     */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_media_list);
+        final ListView listview = (ListView) findViewById(R.id.audio_listview);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        checkBoxSelectAll = (CheckBox)findViewById(R.id.ckbSelectAll);
+        mSendButton = (ImageButton)findViewById(R.id.button_send);
+        mDeleteButton = (ImageButton)findViewById(R.id.button_delete);
+        mCutButton = (ImageButton)findViewById(R.id.button_cut);
+        mMoreButton = (ImageButton)findViewById(R.id.button_more);
+
+        mSendButton.setEnabled(false);
+        mDeleteButton.setEnabled(false);
+        mCutButton.setEnabled(false);
+        mMoreButton.setEnabled(false);
+
+        noMediaLayout = (LinearLayout) findViewById(R.id.noMediaLayout);
+
+        mImageThumbSize = getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
+        // The ImageResizer takes care of loading images into our ImageView children asynchronously
+        mImageResizer = new ImageResizer(this, mImageThumbSize);
+        //mImageResizer.setLoadingImage(R.drawable.empty_photo);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("图片");
+
+
+
+        toolbarSelectModeTop = (LinearLayout) findViewById(R.id.toolbarSelectMode);
+        toolbarSelectModeBottom = (LinearLayout) findViewById(R.id.toolbarSelectModeBottom);
+
+
+        imageListModelsArray = new ArrayList<>();
+        getImagesList();
+        audioListAdapter = new ImagesListAdapter(this, imageListModelsArray, mImageResizer, new AllSelectListner() {
+            @Override
+            public void onAllSelectCheckedChanged(boolean b) {
+                if (!b&&!checkBoxSelectAll.isChecked()){
+                    return;
+                }else if(!b&&checkBoxSelectAll.isChecked()){
+                    mFromItem = true;
+                    checkBoxSelectAll.setChecked(false);
+                }else if(b){
+                    mFromItem = true;
+                    checkBoxSelectAll.setChecked(true);
+                }
+            }
+        });
+
+        listview.setAdapter(audioListAdapter);
+
+
+
+        listview.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int scrollState) {
+                // Pause fetcher to ensure smoother scrolling when flinging
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_FLING) {
+                    // Before Honeycomb pause image loading on scroll to help with performance
+                    if (!Utils.hasHoneycomb()) {
+                        mImageResizer.setPauseWork(true);
+                    }
+                } else {
+                    mImageResizer.setPauseWork(false);
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
+            }
+        });
+
+        checkBoxSelectAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                HashMap<Integer, Boolean> isSelectedMap = audioListAdapter.getIsSelectedMap();
+                if(mFromItem){
+                    mFromItem = false;
+                    return;
+                }
+                if(b){
+                    for(int key=0;key<imageListModelsArray.size();key++){
+                        isSelectedMap.put(key,true);
+                    }
+                    mSendButton.setEnabled(true);
+                    mDeleteButton.setEnabled(true);
+                    mCutButton.setEnabled(true);
+                    mMoreButton.setEnabled(true);
+                }else{
+                    isSelectedMap.clear();
+                    mSendButton.setEnabled(false);
+                    mDeleteButton.setEnabled(false);
+                    mCutButton.setEnabled(false);
+                    mMoreButton.setEnabled(false);
+                }
+
+                audioListAdapter.notifyDataSetChanged();
+
+
+            }
+        });
+
+        mSendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        mDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        mCutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        mMoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
+
+    private void getImagesList() {
+        Cursor mCursor = null;
+        try{
+            mCursor = getContentResolver().query(
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    new String[]{MediaStore.Images.Media.DISPLAY_NAME, MediaStore.Images.Media.DATA}, null, null,
+                    "LOWER(" + MediaStore.Images.Media.TITLE + ") ASC");
+            if (mCursor.getCount() == 0)
+                noMediaLayout.setVisibility(View.VISIBLE);
+            if (mCursor.moveToFirst()) {
+                do {
+                    MediaFileListModel mediaFileListModel = new MediaFileListModel();
+                    mediaFileListModel.setFileName(mCursor.getString(mCursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)));
+                    mediaFileListModel.setFilePath(mCursor.getString(mCursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)));
+                    Log.e(TAG,mediaFileListModel.getFilePath());
+                    imageListModelsArray.add(mediaFileListModel);
+                } while (mCursor.moveToNext());
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            Log.e(TAG,"query error");
+        }finally{
+            if(mCursor!=null)
+                mCursor.close();
+        }
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mImageResizer.setExitTasksEarly(false);
+        audioListAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mImageResizer.setPauseWork(false);
+        mImageResizer.setExitTasksEarly(true);
+        mImageResizer.flushCache();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mImageResizer.closeCache();
+    }
+
+    public void viewFile(String filePath) {
+        try {
+            IntentBuilder.viewFile(this, filePath);
+        } catch (ActivityNotFoundException e) {
+            Log.e(TAG, "fail to view file: " + e.toString());
+            Toast.makeText(getApplicationContext(), "无法打开此文件", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    public void showToolbarSelectMode() {
+        toolbarSelectModeTop.setVisibility(View.VISIBLE);
+        toolbarSelectModeBottom.setVisibility(View.VISIBLE);
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menu_category, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public void setSelectTitle(String title){
+        TextView seletTitle=(TextView)findViewById(R.id.toolbar_title_select);
+        seletTitle.setText(title);
+    }
+
+    public void setSendButton(Boolean isEnabled){
+        mSendButton.setEnabled(isEnabled);
+    }
+
+    public void setDeleteButton(Boolean isEnabled){
+        mDeleteButton.setEnabled(isEnabled);
+    }
+
+    public void setCutButton(Boolean isEnabled){
+        mCutButton.setEnabled(isEnabled);
+    }
+    public void setMoreButton(Boolean isEnabled){
+        mMoreButton.setEnabled(isEnabled);
+    }
+
+    public interface AllSelectListner{
+
+        public void onAllSelectCheckedChanged(boolean b);
+    }
+}

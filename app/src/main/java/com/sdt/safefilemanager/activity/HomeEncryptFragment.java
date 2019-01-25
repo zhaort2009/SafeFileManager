@@ -1,0 +1,66 @@
+package com.sdt.safefilemanager.activity;
+
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.sdt.safefilemanager.R;
+import com.sdt.safefilemanager.adapter.HomeGridViewAdapter;
+import com.sdt.safefilemanager.adapter.HomeGridViewEncryptAdapter;
+import com.sdt.safefilemanager.helper.ExpandableHeightGridView;
+import com.sdt.safefilemanager.model.HomeGridViewItem;
+
+import java.util.ArrayList;
+
+/**
+ * @author: zrt
+ * @date: 2018/11/13
+ * @describe: 主界面-加密文件Fragment
+ */
+public class HomeEncryptFragment extends Fragment {
+
+    private ArrayList<HomeGridViewItem> mItems;
+    private HomeGridViewEncryptAdapter mGridAdapter;
+    private ExpandableHeightGridView mGridView;
+
+    private int imgIds[] = {R.mipmap.music_encrypt, R.mipmap.video_encrypt, R.mipmap.image_encrypt, R.mipmap.doc_encrypt, R.mipmap.rar_encrypt};
+    private String txtNames[] = {"音频", "视频", "图片", "文档", "压缩包"};
+    private String txtSizes[] = {"3GB", "3GB", "3GB", "3GB", "3GB"};
+    private int imgPressedIds[] = {R.mipmap.music_encrypt_pressed, R.mipmap.video_encrypt_pressed, R.mipmap.image_encrypt_pressed, R.mipmap.doc_encrypt_pressed, R.mipmap.rar_encrypt_pressed};
+
+    public HomeEncryptFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mGridAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_home_encrypt, container, false);
+        mGridView = (ExpandableHeightGridView) view.findViewById(R.id.gridView);
+        mGridView.setExpanded(true);
+        mItems = new ArrayList<>();
+        for (int i = 0; i < imgIds.length; i++) {
+            HomeGridViewItem item = new HomeGridViewItem(imgIds[i], txtNames[i], txtSizes[i], imgPressedIds[i]);
+            mItems.add(item);
+        }
+        mGridAdapter = new HomeGridViewEncryptAdapter(mItems, getContext());
+        mGridView.setAdapter(mGridAdapter);
+        return view;
+    }
+
+}

@@ -1,0 +1,132 @@
+package com.sdt.safefilemanager.activity;
+
+import android.content.Intent;
+import android.database.Cursor;
+import android.media.Image;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.sdt.safefilemanager.R;
+import com.sdt.safefilemanager.adapter.HomeGridViewAdapter;
+import com.sdt.safefilemanager.helper.ExpandableHeightGridView;
+import com.sdt.safefilemanager.helper.HomeConstants;
+import com.sdt.safefilemanager.model.HomeGridViewItem;
+import com.sdt.safefilemanager.model.MediaFileListModel;
+
+import java.util.ArrayList;
+
+/**
+ * @author: zrt
+ * @date: 2018/11/13
+ * @describe: 主界面--普通文件Fragment
+ */
+
+public class HomeUnencryptFragment extends Fragment {
+    private ArrayList<HomeGridViewItem> mItems;
+    private HomeGridViewAdapter mGridAdapter;
+    private ExpandableHeightGridView mGridView;
+
+    private int imgIds[] = {R.mipmap.audio, R.mipmap.video, R.mipmap.image, R.mipmap.doc, R.mipmap.apk, R.mipmap.rar};
+    private String txtNames[] = {"音频", "视频", "图片", "文档", "安装包", "压缩包"};
+    private ArrayList<String> txtSizes = new ArrayList<>();
+    private int imgPressedIds[] = {R.mipmap.audio_pressed, R.mipmap.video_pressed, R.mipmap.image_pressed, R.mipmap.doc_pressed, R.mipmap.apk_pressed, R.mipmap.rar_pressed};
+
+
+    public HomeUnencryptFragment() {
+        // Required empty public constructor
+
+    }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mGridAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_home_unencrypt, container, false);
+        mGridView = (ExpandableHeightGridView) view.findViewById(R.id.gridView);
+        mGridView.setExpanded(true);
+        mItems = new ArrayList<>();
+        getAllCount();
+        for (int i = 0; i < imgIds.length; i++) {
+
+            HomeGridViewItem item = new HomeGridViewItem(imgIds[i], txtNames[i], txtSizes.get(i), imgPressedIds[i]);
+            mItems.add(item);
+        }
+        mGridAdapter = new HomeGridViewAdapter(mItems, getContext());
+        mGridView.setAdapter(mGridAdapter);
+        return view;
+
+    }
+
+    private int getCount(String selection, Uri queryUri) {
+        final Cursor mCursor = getActivity().getContentResolver().query(
+                queryUri,
+                null, selection, null,
+                null);
+        int count = mCursor.getCount();
+        mCursor.close();
+        return count;
+    }
+
+
+    private void getAllCount() {
+        //music
+        String selectionMusic = null;
+        String musicCount = String.valueOf(getCount(selectionMusic, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI));
+        txtSizes.add("(" + musicCount + ")");
+        //video
+        String selectionVideo = null;
+        String videoCount = String.valueOf(getCount(selectionMusic, MediaStore.Video.Media.EXTERNAL_CONTENT_URI));
+        txtSizes.add("(" + videoCount + ")");
+        //image
+        String selectionImage = null;
+        String imageCount = String.valueOf(getCount(selectionMusic, MediaStore.Images.Media.EXTERNAL_CONTENT_URI));
+        txtSizes.add("(" + imageCount + ")");
+
+        //doc
+        String[] typeList = new String[]{"doc", "docx", "txt", "xls", "xlsx", "ppt", "pptx", "pdf", "htm", "html"};
+        String selectionDoc = "(";
+
+        for (String fileType : typeList) {
+            selectionDoc = selectionDoc + MediaStore.Files.FileColumns.DATA + " LIKE '%." + fileType + "' or ";
+        }
+        selectionDoc = selectionDoc.substring(0,selectionDoc.length() - 4);
+        selectionDoc =  selectionDoc + ") and " + MediaStore.Files.FileColumns.SIZE + " >1 ";
+        String docCount = String.valueOf(getCount(selectionDoc, MediaStore.Files.getContentUri("external")));
+        txtSizes.add("(" + docCount + ")");
+
+        //apk
+        String selectionApk = "(" + MediaStore.Files.FileColumns.DATA + " LIKE '%.apk'" + ") and " + MediaStore.Files.FileColumns.SIZE + " >1 ";
+        String apkCount = String.valueOf(getCount(selectionApk, MediaStore.Files.getContentUri("external")));
+        txtSizes.add("(" + apkCount + ")");
+        //zip
+        String selectionZip = "(" + MediaStore.Files.FileColumns.DATA + " LIKE '%.zip'" + " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.jar'" + " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.rar'" + ") and " + MediaStore.Files.FileColumns.SIZE + " >1 ";
+        String zipCount = String.valueOf(getCount(selectionApk, MediaStore.Files.getContentUri("external")));
+        txtSizes.add("(" + zipCount + ")");
+    }
+
+
+}

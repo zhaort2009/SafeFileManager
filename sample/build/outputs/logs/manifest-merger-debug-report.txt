@@ -1,0 +1,79 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:2:1-16:12
+INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:2:1-16:12
+INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:2:1-16:12
+MERGED from [:library] D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\library\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-13:12
+MERGED from [com.pnikosis:materialish-progress:1.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\materialish-progress-1.0.aar\fb267a5fb9e47aa4c0d3780aee85c1dc\AndroidManifest.xml:2:1-17:12
+MERGED from [com.android.support:appcompat-v7:21.0.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\appcompat-v7-21.0.0.aar\bf37111cf34b6ccb7f9f43069c151fd6\AndroidManifest.xml:14:4-17:12
+MERGED from [com.android.support:support-v4:21.0.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.0.aar\2c04147458e838af1b6cd94291a9d6d0\AndroidManifest.xml:14:4-17:12
+INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:2:1-16:12
+INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:2:1-16:12
+	package
+		ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:3:11-48
+	android:versionName
+		ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:5:11-36
+		INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml
+		INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:4:11-34
+		INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml
+		INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml
+application
+ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:7:5-15:19
+MERGED from [:library] D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\library\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:11:5-20
+MERGED from [:library] D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\library\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:11:5-20
+MERGED from [com.pnikosis:materialish-progress:1.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\materialish-progress-1.0.aar\fb267a5fb9e47aa4c0d3780aee85c1dc\AndroidManifest.xml:11:5-15:19
+MERGED from [com.pnikosis:materialish-progress:1.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\materialish-progress-1.0.aar\fb267a5fb9e47aa4c0d3780aee85c1dc\AndroidManifest.xml:11:5-15:19
+MERGED from [com.android.support:appcompat-v7:21.0.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\appcompat-v7-21.0.0.aar\bf37111cf34b6ccb7f9f43069c151fd6\AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:appcompat-v7:21.0.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\appcompat-v7-21.0.0.aar\bf37111cf34b6ccb7f9f43069c151fd6\AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:21.0.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.0.aar\2c04147458e838af1b6cd94291a9d6d0\AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:21.0.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.0.aar\2c04147458e838af1b6cd94291a9d6d0\AndroidManifest.xml:16:5-19
+	android:label
+		ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:7:18-50
+	android:allowBackup
+		ADDED from [com.pnikosis:materialish-progress:1.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\materialish-progress-1.0.aar\fb267a5fb9e47aa4c0d3780aee85c1dc\AndroidManifest.xml:12:9-35
+	android:icon
+		ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:7:51-87
+	android:theme
+		ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:7:88-135
+activity#cn.pedant.SweetAlert.sample.SampleActivity
+ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:8:9-14:20
+	android:label
+		ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:9:19-51
+	android:name
+		ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:8:19-49
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:10:13-13:29
+action#android.intent.action.MAIN
+ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:11:17-68
+	android:name
+		ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:11:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:12:17-76
+	android:name
+		ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml:12:27-74
+uses-sdk
+INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml
+INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml
+MERGED from [:library] D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\library\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-9:41
+MERGED from [:library] D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\library\build\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-9:41
+MERGED from [com.pnikosis:materialish-progress:1.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\materialish-progress-1.0.aar\fb267a5fb9e47aa4c0d3780aee85c1dc\AndroidManifest.xml:7:5-9:41
+MERGED from [com.pnikosis:materialish-progress:1.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\materialish-progress-1.0.aar\fb267a5fb9e47aa4c0d3780aee85c1dc\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:21.0.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\appcompat-v7-21.0.0.aar\bf37111cf34b6ccb7f9f43069c151fd6\AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:appcompat-v7:21.0.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\appcompat-v7-21.0.0.aar\bf37111cf34b6ccb7f9f43069c151fd6\AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:support-v4:21.0.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.0.aar\2c04147458e838af1b6cd94291a9d6d0\AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:support-v4:21.0.0] C:\Users\T540p\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.0.aar\2c04147458e838af1b6cd94291a9d6d0\AndroidManifest.xml:15:5-42
+INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml
+INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml
+		ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml
+		INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml
+		ADDED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml
+		INJECTED from D:\workspaces\androidStudioWorkSpace\AndroidProjectImport\SafeFileManager\sample\src\main\AndroidManifest.xml

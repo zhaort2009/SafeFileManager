@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sdt.safefilemanager.activity.HomeGridViewItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gridItemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_background_lightGray"
+    android:orientation="horizontal"
+    android:weightSum="30">
+
+    <!--GridItem 竖向占位8/30-->
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="8">
+    </RelativeLayout>
+
+    <!--GridItem 竖向占位14/30-->
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="14">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="30">
+
+            <!--GridItem 中间部分 竖向占位3/30-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:textColor="@android:color/holo_red_light"/>
+
+            <!--GridItem 中间部分 图片14/30-->
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="14"
+                android:scaleType="fitCenter"
+                app:srcCompat="@mipmap/audio" />
+
+            <!--GridItem 中间部分 竖向占位5/30-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/holo_red_light"/>
+
+            <!--GridItem 中间部分 文字占位5/30-->
+            <com.sdt.safefilemanager.activity.AutoResizeTextView
+                android:id="@+id/textViewName"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:text="TextView"
+                android:gravity="center"
+                android:textColor="@color/home_grid_normal"/>
+
+            <!--GridItem 中间部分 竖向占位0.5/30-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:textColor="@android:color/holo_red_light"/>
+
+            <!--GridItem 中间部分 文字占位3.5/30-->
+            <com.sdt.safefilemanager.activity.AutoResizeTextView
+                android:id="@+id/textViewSize"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3.5"
+                android:text="TextView"
+                android:gravity="center"
+                android:textColor="@color/home_grid_pressed"/>
+
+            <!--GridItem 中间部分 竖向占位3/30-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:textColor="@android:color/holo_red_light"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!--GridItem 竖向占位8/30-->
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="8">
+    </RelativeLayout>
+
+</com.sdt.safefilemanager.activity.HomeGridViewItemLayout>

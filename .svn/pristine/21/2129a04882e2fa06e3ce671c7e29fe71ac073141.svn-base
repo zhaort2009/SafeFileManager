@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_background_darkGray"
+    tools:context=".activity.HomeEncryptFragment">
+
+    <!--加密Fragment整体滑动-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--加密Fragment 占位-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/home_background_lightGray">
+            </RelativeLayout>
+
+            <!--加密Fragment GridView-->
+            <com.sdt.safefilemanager.helper.ExpandableHeightGridView
+                android:id="@+id/gridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/home_background_lightGray"
+                android:horizontalSpacing="0dp"
+                android:numColumns="3"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="0dp" >
+
+
+            </com.sdt.safefilemanager.helper.ExpandableHeightGridView>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

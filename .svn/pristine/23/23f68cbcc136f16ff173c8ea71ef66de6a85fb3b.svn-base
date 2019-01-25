@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sdt.safefilemanager">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--6666666666666666666666666666666666666666666666666666666666666 for origin Login-->
+    <!--<uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="false" />
+    <uses-feature android:name="android.hardware.location.gps" />-->
+
+  <!--  <application
+        android:allowBackup="true"
+        android:icon="@mipmap/programicon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/MyMaterialTheme"
+        android:largeHeap="true">
+
+        <service
+            android:name=".activity.BLEService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.LoginActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activity.MainHomeActivity">
+        </activity>-->
+    <!--66666666666666666666666666666666666666666666666666666666666 for origin Login-->
+
+    <!--88888888888888888888888888888888888888888888888888888888888 for ignore Login-->
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/programicon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/MyMaterialTheme"
+        android:largeHeap="true">
+        <activity android:name=".activity.MainHomeActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
+
+        <activity android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <!--88888888888888888888888888888888888888888888888888888888888 for ignore Login-->
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <!-- activity for ImageViewer -->
+        <activity
+            android:name=".activity.ImageViewActivity"
+            android:screenOrientation="portrait"></activity>
+        <!-- activity for text editor -->
+        <activity
+            android:name=".activity.TextFileViewActivity"
+            android:screenOrientation="portrait"></activity>
+        <!-- activity for settings -->
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:screenOrientation="portrait"></activity>
+        <!-- activity for images list -->
+        <activity
+            android:name=".activity.ImagesListActivity"
+            android:parentActivityName=".activity.MainActivity"/>
+        <!-- activity for audio list -->
+        <activity
+            android:name=".activity.AudiosListActivity"
+            android:parentActivityName=".activity.MainActivity"></activity>
+        <!-- activity for video list -->
+        <activity
+            android:name=".activity.VideosListActivity"
+            android:parentActivityName=".activity.MainActivity"></activity>
+        <activity android:name=".activity.SecondActivity"></activity>
+
+
+        <!-- activity for zip list -->
+        <activity
+            android:name=".activity.ZipsListActivity"
+            android:parentActivityName=".activity.MainActivity"></activity>
+
+
+        <!-- activity for apk list -->
+        <activity
+            android:name=".activity.ApksListActivity"
+            android:parentActivityName=".activity.MainActivity"></activity>
+        <activity
+            android:name=".activity.DocListActivity"
+            android:parentActivityName=".activity.MainActivity"></activity>
+    </application>
+
+</manifest>

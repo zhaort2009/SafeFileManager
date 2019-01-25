@@ -1,0 +1,93 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
+    <string name="app_name">安全文件管理</string>
+    <string name="drawer_open">打开</string>
+    <string name="drawer_close">关闭</string>
+
+    <string name="nav_item_home">内存</string>
+    <string name="nav_item_friends">SD卡</string>
+
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_friends</item>
+    </string-array>
+
+    <string name="title_external">SD卡</string>
+    <string name="title_internal">手机</string>
+
+    <string name="action_settings">设置</string>
+    <string name="action_save">保存</string>
+    <string name="action_delete">删除</string>
+    <string name="action_add_folder">新建</string>
+    <string name="action_add_file">新建</string>
+    <string name="action_change_text_size">字体大小</string>
+    <string name="action_change_text_color">颜色</string>
+    <string name="action_change_background_color">背景色</string>
+
+    <string name="lbl_property">属性</string>
+    <string name="lbl_refresh">刷新</string>
+    <string name="lbl_new_folder">新建文件夹</string>
+    <string name="lbl_new_file">新建文件</string>
+    <string name="lbl_select_all">全选</string>
+    <string name="lbl_de_select_all">取消全选</string>
+    <string name="lbl_copy_here">拷贝</string>
+    <string name="lbl_move_here">移动</string>
+    <string name="lbl_delete_selection">删除选择</string>
+    <string name="lbl_add_bookmark">添加标签</string>
+    <string name="lbl_rename_file">重命名</string>
+    <string name="lbl_cancel">取消</string>
+    <string name="lbl_audios">音乐</string>
+    <string name="lbl_videos">视频</string>
+    <string name="lbl_images">图片</string>
+    <string name="lbl_internal_storage">内存</string>
+    <string name="lbl_external_storage">SD卡</string>
+    <string name="lbl_ram">RAM</string>
+
+    <string name="btn_lbl_create">创建</string>
+    <string name="btn_lbl_cancel">取消</string>
+    <string name="btn_lbl_okay">确定</string>
+    <string name="btn_lbl_rename">重命名</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_confirm">确定</string>
+
+    <string name="lbl_title_rename_folder">重命名</string>
+    <string name="lbl_title_rename_file">重命名</string>
+
+    <string name="msg_prompt_delete_folder">确定删除#name# ?</string>
+    <string name="msg_prompt_delete_folders">确定删除?</string>
+    <string name="msg_prompt_unzip_folder">确定解压到文件夹？</string>
+    <string name="msg_prompt_save_text_file">确定保存文件吗？</string>
+
+    <string name="msg_prompt_file_created">创建成功.</string>
+    <string name="msg_prompt_file_not_created">创建失败!</string>
+    <string name="msg_prompt_file_already_exits">文件已存在</string>
+
+    <string name="msg_prompt_folder_created">创建成功.</string>
+    <string name="msg_prompt_folder_not_created">创建失败 ..!</string>
+    <string name="msg_prompt_folder_already_exits">文件夹已存在</string>
+
+    <string name="msg_prompt_not_renamed">重命名失败!</string>
+    <string name="msg_prompt_renamed">重命名成功.</string>
+    <string name="msg_prompt_name_already_exits">名称已经存在</string>
+
+    <string name="textview">TextView</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dialog_select_type">选择文件类型</string>
+    <string name="dialog_type_text">文本</string>
+    <string name="dialog_type_audio">音频</string>
+    <string name="dialog_type_video">视频</string>
+    <string name="dialog_type_image">图像</string>
+
+
+    <string name="operation_delete_confirm_message">Confirm Deletion?</string>
+    <string name="confirm">OK</string>
+    <string name="operation_deleting">Deleting...</string>
+    <string name="cancel">Cancel</string>
+
+
+    <string name="crumb_title">第%1$d层</string>
+    <string name="list_item_txt">第%1$d层第%2$d行</string>
+</resources>

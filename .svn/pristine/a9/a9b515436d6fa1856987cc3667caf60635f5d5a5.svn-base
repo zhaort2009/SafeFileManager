@@ -1,0 +1,77 @@
+package com.sdt.safefilemanager.adapter;
+
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Display;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.io.File;
+import java.util.ArrayList;
+
+import com.sdt.safefilemanager.R;
+import com.sdt.safefilemanager.activity.ImagesListActivity;
+import com.sdt.safefilemanager.helper.BitmapUtils;
+import com.sdt.safefilemanager.helper.ImageResizer;
+import com.sdt.safefilemanager.model.MediaFileListModel;
+
+
+public class ImagesListAdapter extends BaseAdapter {
+    private final ArrayList<MediaFileListModel> mediaFileListModelsArray;
+    private final Activity activity;
+    private LayoutInflater layoutInflater;
+    private Context mContext;
+    private ImageResizer mImageResizer;
+
+
+    public ImagesListAdapter(ImagesListActivity audiosListActivity, ArrayList<MediaFileListModel> mediaFileListModelsArray, ImageResizer resizer) {
+        this.activity = audiosListActivity;
+        this.mediaFileListModelsArray = mediaFileListModelsArray;
+        this.mContext = audiosListActivity;
+        this.mImageResizer = resizer;
+
+    }
+
+    @Override
+    public int getCount() {
+        return mediaFileListModelsArray.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return mediaFileListModelsArray.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View view = convertView;
+        if (view == null)
+            layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (convertView == null)
+            view = layoutInflater.inflate(R.layout.media_list_item_view, null);
+        TextView lblFileName = (TextView) view.findViewById(R.id.file_name);
+        ImageView imgItemIcon = (ImageView) view.findViewById(R.id.icon);
+        MediaFileListModel mediaFileListModel = mediaFileListModelsArray.get(position);
+        lblFileName.setText(mediaFileListModel.getFileName());
+        File imgFile = new File(mediaFileListModel.getFilePath());
+        if (imgFile.exists()) {
+            Log.d("action", mediaFileListModel.getFilePath());
+            mImageResizer.loadImage(imgFile.getAbsolutePath(), imgItemIcon);
+        }
+        return view;
+    }
+}

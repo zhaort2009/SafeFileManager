@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    >
+
+
+
+    <com.sdt.safefilemanager.activity.RecyclingImageView
+        android:id="@+id/icon"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:scaleType="centerCrop"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"/>
+
+    <!--1.文件名称 与图标上边缘对齐alignTop-->
+    <TextView
+        android:id="@+id/file_name"
+        android:maxWidth="220dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/icon"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/icon"
+        android:text="hello"
+        android:textSize="16dp"
+        android:singleLine="true"
+        android:ellipsize="middle"/>
+
+    <!--2.文件最后修改时间 与图标下边缘对齐alignbottom-->
+    <TextView
+        android:id="@+id/file_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/icon"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignBottom="@+id/icon"
+        android:text="2018-12-16"
+        android:textSize="10dp"
+        android:singleLine="true"
+        android:ellipsize="middle"
+        android:textColor="@color/home_grid_pressed"/>
+
+    <!--3.文件大小 与文件最后修改时间下边缘对齐alignbottom-->
+    <TextView
+        android:id="@+id/file_size"
+        android:maxWidth="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/file_time"
+        android:layout_marginLeft="15dp"
+        android:layout_alignBottom="@+id/file_time"
+        android:text="20KB"
+        android:textSize="10dp"
+        android:singleLine="true"
+        android:ellipsize="middle"
+        android:textColor="@color/home_grid_pressed"/>
+
+    <!--右侧：选择模式.显示选择框-->
+    <CheckBox
+        android:id="@+id/ckb"
+        android:visibility="gone"
+        android:focusable="false"
+        android:clickable="false"
+        android:focusableInTouchMode="false"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:button="@drawable/bg_checkbox_style" />
+
+</RelativeLayout>

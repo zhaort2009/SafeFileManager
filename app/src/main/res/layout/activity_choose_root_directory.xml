@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_background_lightGray"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/tool_bar" />
+    <ListView
+        android:id="@+id/rootDirectory_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:listSelector="@drawable/bg_listview_style"
+        android:clickable="false"
+        android:divider="#D9D9D9"
+        android:dividerHeight="1px"
+        android:focusable="false"/>
+
+</RelativeLayout>

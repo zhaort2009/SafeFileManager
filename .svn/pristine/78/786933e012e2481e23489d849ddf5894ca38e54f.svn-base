@@ -1,0 +1,115 @@
+package com.sdt.safefilemanager.helper;
+
+/**
+ * @author:
+ * @date: 2018/12/4
+ * @describe:
+ */
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.ArrayList;
+
+import android.os.AsyncTask;
+import android.os.Environment;
+import android.text.TextUtils;
+import android.util.Log;
+import com.sdt.safefilemanager.model.MediaFileListModel;
+
+public class FileOperationHelper {
+    public interface IOperationProgressListener {
+        void onFinish();
+
+        void onFileChanged(String path);
+    }
+    private static final String LOG_TAG = "FileOperation";
+    private ArrayList<MediaFileListModel> mCurFileNameList = new ArrayList<MediaFileListModel>();
+    private boolean mMoving;
+    private IOperationProgressListener mOperationListener;
+    //private FilenameFilter mFilter;
+
+    public FileOperationHelper(IOperationProgressListener l) {
+        mOperationListener = l;
+    }
+
+//    public void setFilenameFilter(FilenameFilter f) {
+//        mFilter = f;
+//    }
+
+    /**共用的异步函数，每调用一次新建一个AsyncTask对象，并执行execute，开启子线程**/
+    private void asnycExecute(Runnable r) {
+        final Runnable _r = r;
+        new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object... params) {
+                synchronized(mCurFileNameList) {
+                    _r.run();
+                }
+                if (mOperationListener != null) {
+                    mOperationListener.onFinish();
+                }
+
+                return null;
+            }
+        }.execute();
+    }
+
+    /**删除操作****************************Start******************/
+
+    public boolean Delete(ArrayList<MediaFileListModel> files) {
+        copyFileList(files);
+        asnycExecute(new Runnable() {
+            @Override
+            public void run() {
+                for (MediaFileListModel f : mCurFileNameList) {
+                    DeleteFile(f);
+                }
+
+                mOperationListener.onFileChanged(Environment
+                        .getExternalStorageDirectory()
+                        .getAbsolutePath());
+
+                clear();
+            }
+        });
+        return true;
+    }
+
+    private void copyFileList(ArrayList<MediaFileListModel> files) {
+        synchronized(mCurFileNameList) {
+            mCurFileNameList.clear();
+            for (MediaFileListModel f : files) {
+                mCurFileNameList.add(f);
+            }
+        }
+    }
+
+
+    protected void DeleteFile(MediaFileListModel f) {
+        if (f == null) {
+            Log.e(LOG_TAG, "DeleteFile: null parameter");
+            return;
+        }
+
+        File file = new File(f.getFilePath());
+        boolean directory = file.isDirectory();
+        if (directory) {
+            for (File child : file.listFiles()) {
+                if (FileUtils.isNormalFile(child.getAbsolutePath())) {
+                    DeleteFile(FileUtils.GetFileInfo(child, true));
+                }
+            }
+        }
+
+        file.delete();
+
+        Log.v(LOG_TAG, "DeleteFile >>> " + f.getFilePath());
+    }
+
+    public void clear() {
+        synchronized(mCurFileNameList) {
+            mCurFileNameList.clear();
+        }
+    }
+
+    /**删除操作****************************End******************/
+}

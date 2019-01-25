@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    >
+
+    <ImageView
+        android:id="@+id/rootDir_icon"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:scaleType="centerCrop"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"/>
+
+    <!--1.根目录名称 与图标上边缘对齐alignTop-->
+    <TextView
+        android:id="@+id/rootDir_name"
+        android:maxWidth="220dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/rootDir_icon"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/rootDir_icon"
+        android:text="内部存储设备"
+        android:textSize="16dp"
+        android:singleLine="true"
+        android:ellipsize="middle"/>
+
+    <!--2.根目录下可用空间 与图标下边缘对齐alignbottom-->
+    <TextView
+        android:id="@+id/rootDir_freeSpace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/rootDir_icon"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignBottom="@+id/rootDir_icon"
+        android:text="可用: 56.1GB"
+        android:textSize="10dp"
+        android:singleLine="true"
+        android:ellipsize="middle"
+        android:textColor="@color/home_grid_pressed"/>
+
+
+    <!--3.根目录下总空间 与文件最后修改时间下边缘对齐alignbottom-->
+    <TextView
+        android:id="@+id/rootDir_allSpace"
+        android:maxWidth="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/rootDir_freeSpace"
+        android:layout_marginLeft="15dp"
+        android:layout_alignBottom="@+id/rootDir_freeSpace"
+        android:text="总共: 117.1GB"
+        android:textSize="10dp"
+        android:singleLine="true"
+        android:ellipsize="middle"
+        android:textColor="@color/home_grid_pressed"/>
+</RelativeLayout>
